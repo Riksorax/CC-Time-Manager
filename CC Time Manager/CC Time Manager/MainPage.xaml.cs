@@ -9,16 +9,16 @@ using Xamarin.Forms;
 
 namespace CC_Time_Manager
 {
-    
+
 
     public partial class MainPage : ContentPage
     {
-        
+
         public MainPage()
         {
             InitializeComponent();
 
-            
+
         }
         public void TimeCalculate()
         {
@@ -32,30 +32,54 @@ namespace CC_Time_Manager
             double workHours = 7.7;
             TimeSpan hours = TimeSpan.FromHours(workHours);
             TimeSpan overTiToday = hoursWBreak - hours;
-            overTimeToday_Label.BindingContext = overTiToday;
+
             
-            /*
-            //Hier werden die Heutigen Überstunden mit den Insgesamten Überstunden zusammen addiert
-            if(dateToday == DateTime.Now = true) 
-            {
-                TimeSpan overTimeTotal = overTiToday + overTiToday;
-                overTimeTotal_Label.BindingContext = overTimeTotal;
-            }
-            else
+            if (overTiToday < hours)
             {
                 overTimeToday_Label.BindingContext = overTiToday;
+            }
+            else if (overTiToday > hours)
+            {
+                double overTimeTyZero = 0.0;
+                TimeSpan zero = TimeSpan.FromMinutes(overTimeTyZero);
+                overTimeToday_Label.BindingContext = zero;
+            }
+           
+
+            //Hier sind die gesamten Überstunden standtmäißg  auf  null
+            int overTimeZero = 0;
+            TimeSpan overTimeTotal = TimeSpan.FromHours(overTimeZero);
+            overTimeTotal_Label.BindingContext = overTimeTotal;
+
+            //Hie werden die Kompletten überstunden ausgerechnet
+            /*
+            if (hoursWBreak < hours)
+            {
+               
+                TimeSpan overTimeTotal = overTimeTotal + overTiToday;
+                overTimeTotal_Label.BindingContext = overTimeTotal;
+                
+            }
+            else if (hoursWBreak > hours)
+            {
+                
+                TimeSpan overTimeTotal = overTimeTotal - overTiToday;
+                overTimeTotal_Label.BindingContext = overTimeTotal;
             }
             */
         }
 
+
+    
+
         public void OverTimeMinus()
         {
-
+            
         }
 
         public void OverTimePlus()
         {
-
+            
         }
 
         private void HoursButton_Clicked(object sender, EventArgs e)

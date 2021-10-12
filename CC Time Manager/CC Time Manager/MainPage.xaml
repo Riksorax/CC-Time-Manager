@@ -4,7 +4,7 @@
              x:Class="CC_Time_Manager.MainPage">
 
     <StackLayout>
-        <!-- Der erste Block hier ist für die Start Zeit mit  Datum -->
+        <!-- Hier kann man das Datum auswählen, die Uhrzeiten eintragen von bis und die Pausen Zeit eintragen. Und mit dem Button kann man dies Bestätigen und ausrechnen lassen. -->
 
         <Label 
             Text="Datum auswählen:" 
@@ -52,11 +52,15 @@
             HorizontalOptions="Center"
             Text="Arbeitszeiten bestätigen"/>
 
+        <!--Die Label hier sind nur als Lückenfüller um etwas abstand zu haben -->
+        
         <Label/>
         <Label/>
         <Label/>
         <Label/>
 
+        <!--In diesen Labels hier werden das Datum angezeigt und die ausgerechneten Stunden werden hier auch dann angezeigt-->
+        
         <FlexLayout>
             <Label 
                 Text="Heutiges Datum : " 
@@ -111,10 +115,14 @@
                 FlexLayout.Grow="1"/>
         </FlexLayout>
 
+        <!--Die Label hier sind wieder nur als Lückenfüller um etwas abstand zu haben -->
+        
         <Label/>
         <Label/>
         <Label/>
         <Label/>
+        
+        <!--In diesem Abschnitt kann man seine Überstunden manuell hinzfügen ober abziehen lassen -->
         
         <Label 
             Text="Überstunden abziehen oder hinzufügen: "
