@@ -45,52 +45,70 @@ namespace CC_Time_Manager
                 overTimeToday_Label.BindingContext = zero;
             }
            
-
+            
             //Hier sind die gesamten Überstunden standtmäißg  auf  null
             int overTimeZero = 0;
             TimeSpan overTimeTotal = TimeSpan.FromHours(overTimeZero);
             overTimeTotal_Label.BindingContext = overTimeTotal;
 
             //Hie werden die Kompletten überstunden ausgerechnet
-            /*
+            
             if (hoursWBreak < hours)
             {
                
-                TimeSpan overTimeTotal = overTimeTotal + overTiToday;
-                overTimeTotal_Label.BindingContext = overTimeTotal;
+                TimeSpan overTimeTotal1 = overTimeTotal + overTiToday;
+                overTimeTotal_Label.BindingContext = overTimeTotal1;
                 
             }
             else if (hoursWBreak > hours)
             {
                 
-                TimeSpan overTimeTotal = overTimeTotal - overTiToday;
-                overTimeTotal_Label.BindingContext = overTimeTotal;
+                TimeSpan overTimeTotal1 = overTimeTotal - overTiToday;
+                overTimeTotal_Label.BindingContext = overTimeTotal1;
             }
-            */
+            
         }
 
 
     
-
+        //Ab hier kann man seine Stunden manuell hinzufügen und auch wieder abziehen
+        //TODO BERCHNUNG NOCH MAL DRÜBER SCHAUEN UND PROB FIXEN 
         public void OverTimeMinus()
         {
-            
+            TimeSpan overTimeTotal = TimeSpan.Parse(overTimeTotal_Label.Text);
+            TimeSpan overTimeMinus = TimeSpan.Parse(overTimeMTimePicker.Text);
+            TimeSpan newOverTimeM = overTimeMinus - overTimeTotal;
+            overTimeTotal_Label.BindingContext = newOverTimeM;
         }
 
         public void OverTimePlus()
         {
+            double overTimeTotal = TimeSpan.Parse(overTimeTotal_Label.Text).TotalHours;
+            double overTimePlus = TimeSpan.Parse(overHoursPTimePicker.Text).TotalHours;
+            double newOverTimeP = overTimePlus + overTimeTotal;
             
+            overTimeTotal_Label.BindingContext = newOverTimeP;
         }
 
+        // Der Button lässt die Zeit ausrechnen
         private void HoursButton_Clicked(object sender, EventArgs e)
         {
             TimeCalculate();
 
         }
 
+        // Der Button soll die Zeiten und Daten abspeichern
+        private void SaveTime_Clicked(object sender, EventArgs e)
+        {
+            //TODO Save Datei hinzufügen
+        }
+
+        // Der Button soll dafür da sein das man seine Manuellen überstunden bestätigen kann
         private void OverTimeChange_Clicked(object sender, EventArgs e)
         {
-
+            
+            OverTimePlus();
+            
         }
     }
 }

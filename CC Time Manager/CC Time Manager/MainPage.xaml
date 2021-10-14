@@ -2,157 +2,164 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CC_Time_Manager.MainPage">
+    <ScrollView>
+            <StackLayout>
+                <!-- Hier kann man das Datum auswählen, die Uhrzeiten eintragen von bis und die Pausen Zeit eintragen. Und mit dem Button kann man dies Bestätigen und ausrechnen lassen. -->
 
-    <StackLayout>
-        <!-- Hier kann man das Datum auswählen, die Uhrzeiten eintragen von bis und die Pausen Zeit eintragen. Und mit dem Button kann man dies Bestätigen und ausrechnen lassen. -->
+                <Label 
+                    Text="Datum auswählen:" 
+                    HorizontalOptions="Center"/>
 
-        <Label 
-            Text="Datum auswählen:" 
-            HorizontalOptions="Center"/>
+                <DatePicker 
+                    x:Name="dateToday"            
+                    HorizontalOptions="Center"/>
 
-        <DatePicker 
-            x:Name="dateToday"            
-            HorizontalOptions="Center"/>
+                <Label 
+                    Text="Arbeitszeit von bis:" 
+                    HorizontalOptions="Center"/>
 
-        <Label 
-            Text="Arbeitszeit von bis:" 
-            HorizontalOptions="Center"/>
-
-        <FlexLayout>
-            <Label 
-                Text="Start Zeit: "
-                VerticalTextAlignment="Center"/>
+                <FlexLayout>
+                    <Label 
+                        Text="Start Zeit: "
+                        VerticalTextAlignment="Center"/>
             
-            <TimePicker 
-                x:Name="startTimePicker"/>
+                    <TimePicker 
+                        x:Name="startTimePicker"/>
             
-            <Label FlexLayout.Grow="1"/>
+                    <Label FlexLayout.Grow="1"/>
             
-            <Label 
-                Text="End Zeit: " 
-                HorizontalOptions="End"
-                VerticalTextAlignment="Center"/>
+                    <Label 
+                        Text="End Zeit: " 
+                        HorizontalOptions="End"
+                        VerticalTextAlignment="Center"/>
             
-            <TimePicker
-                x:Name="endTimePicker"
-                HorizontalOptions="End" />
-        </FlexLayout>
+                    <TimePicker
+                        x:Name="endTimePicker"
+                        HorizontalOptions="End" />
+                </FlexLayout>
 
-        <Label 
-            Text="Pausen Zeit in Minuten:" 
-            HorizontalOptions="Center"/>
+                <Label 
+                    Text="Pausen Zeit in Minuten:" 
+                    HorizontalOptions="Center"/>
 
-        <TimePicker
-            x:Name="breakTime"
-            HorizontalOptions="Center"/>
+                <TimePicker
+                    x:Name="breakTime"
+                    HorizontalOptions="Center"/>
 
-        <Button 
-            Clicked="HoursButton_Clicked"
-            IsEnabled="True"
-            HorizontalOptions="Center"
-            Text="Arbeitszeiten bestätigen"/>
+                <Button 
+                    Clicked="HoursButton_Clicked"
+                    IsEnabled="True"
+                    HorizontalOptions="Center"
+                    Text="Arbeitszeiten bestätigen"/>
 
-        <!--Die Label hier sind nur als Lückenfüller um etwas abstand zu haben -->
+                <!--Die Label hier sind nur als Lückenfüller um etwas abstand zu haben -->
         
-        <Label/>
-        <Label/>
-        <Label/>
-        <Label/>
-
-        <!--In diesen Labels hier werden das Datum angezeigt und die ausgerechneten Stunden werden hier auch dann angezeigt-->
-        
-        <FlexLayout>
-            <Label 
-                Text="Heutiges Datum : " 
-                FontSize="Medium"/>
-            <Label
-                x:Name="DateToday_Label"
-                HorizontalTextAlignment="Center"
-                FontSize="Medium"
-                Text="{Binding Source={x:Reference dateToday},Path=Date,StringFormat='{0:dd.MM.yyyy}'}"
-                FlexLayout.Grow="1"/>
-            
-        </FlexLayout>
-
-        <Label/>
-
-        <FlexLayout>
-            <Label 
-                Text="Heutige Std. insgesamt: "
-                FontSize="Medium"/>
-
-            <Label 
-                x:Name="hoursTotal_Label"
-                HorizontalTextAlignment="Center"
-                FontSize="Medium"
-                Text="{Binding UpdateSourceEventName=HoursButton_Clicked, StringFormat='{0:hh\\:mm}'}"
-                FlexLayout.Grow="1"/>
-        </FlexLayout>
-
-        <FlexLayout>
-            <Label 
-                Text="Heutige Überstunden: "
-                FontSize="Medium"/>
-
-            <Label 
-                x:Name="overTimeToday_Label"
-                HorizontalTextAlignment="Center"
-                FontSize="Medium"
-                Text="{Binding UpdateSourceEventName=HoursButton_Clicked, StringFormat='{0:hh\\:mm}'}"
-                FlexLayout.Grow="1"/>
-        </FlexLayout>
-        
-        <FlexLayout>
-            <Label 
-                Text="Überstunden insgesamt: "
-                FontSize="Medium"/>
-
-            <Label                
-                x:Name="overTimeTotal_Label"
-                HorizontalTextAlignment="Center"
-                FontSize="Medium"
-                Text="{Binding UpdateSourceEventName=HoursButton_Clicked, StringFormat='{0:hh\\:mm}'}"
-                FlexLayout.Grow="1"/>
-        </FlexLayout>
-
-        <!--Die Label hier sind wieder nur als Lückenfüller um etwas abstand zu haben -->
-        
-        <Label/>
-        <Label/>
-        <Label/>
-        <Label/>
-        
-        <!--In diesem Abschnitt kann man seine Überstunden manuell hinzfügen ober abziehen lassen -->
-        
-        <Label 
-            Text="Überstunden abziehen oder hinzufügen: "
-            HorizontalOptions="Center"/>
-        <FlexLayout>
-            <Label 
-                Text="Stunden hinzufügen: "
-                VerticalTextAlignment="Center"/>
-            
-            <TimePicker 
-                x:Name="overHoursPTimePicker"/>
-
-            <Label FlexLayout.Grow="1"/>
-
-            <Label 
-                Text="Stunden abziehen: "
-                VerticalTextAlignment="Center"/>
-            
-            <TimePicker
-                x:Name="overTimeMTimePicker"/>
-            
-        </FlexLayout>
-
-        <Button 
-            Clicked="OverTimeChange_Clicked"
-            Text="Überstunden ändern"
-            HorizontalOptions="Center"
-            IsEnabled="True"/>
+                <Label/>
+                <Label/>
+                <Label/>
         
 
-    </StackLayout>
+                <!--In diesen Labels hier werden das Datum angezeigt und die ausgerechneten Stunden werden hier auch dann angezeigt-->
+        
+                <FlexLayout>
+                    <Label 
+                        Text="Heutiges Datum : " 
+                        FontSize="Medium"/>
+                    <Label
+                        x:Name="DateToday_Label"
+                        HorizontalTextAlignment="Center"
+                        FontSize="Medium"
+                        Text="{Binding Source={x:Reference dateToday},Path=Date,StringFormat='{0:dd.MM.yyyy}'}"
+                        FlexLayout.Grow="1"/>
+            
+                </FlexLayout>
 
+                <Label/>
+
+                <FlexLayout>
+                    <Label 
+                        Text="Heutige Std. insgesamt: "
+                        FontSize="Medium"/>
+
+                    <Label 
+                        x:Name="hoursTotal_Label"
+                        HorizontalTextAlignment="Center"
+                        FontSize="Medium"
+                        Text="{Binding UpdateSourceEventName=HoursButton_Clicked, StringFormat='{0:hh\\:mm}'}"
+                        FlexLayout.Grow="1"/>
+                </FlexLayout>
+
+                <FlexLayout>
+                    <Label 
+                        Text="Heutige Überstunden: "
+                        FontSize="Medium"/>
+
+                    <Label 
+                        x:Name="overTimeToday_Label"
+                        HorizontalTextAlignment="Center"
+                        FontSize="Medium"
+                        Text="{Binding UpdateSourceEventName=HoursButton_Clicked, StringFormat='{0:hh\\:mm}'}"
+                        FlexLayout.Grow="1"/>
+                </FlexLayout>
+        
+                <FlexLayout>
+                    <Label 
+                        Text="Überstunden insgesamt: "
+                        FontSize="Medium"/>
+
+                    <Label                
+                        x:Name="overTimeTotal_Label"
+                        HorizontalTextAlignment="Center"
+                        FontSize="Medium"
+                        Text="{Binding UpdateSourceEventName=HoursButton_Clicked, StringFormat='{0:hh\\:mm}'}"
+                        FlexLayout.Grow="1"/>
+                </FlexLayout>
+
+                <!--Die Label hier sind wieder nur als Lückenfüller um etwas abstand zu haben und ein Button um die Zeiten zu Speichern -->
+        
+                <Label/>
+                <Label/>
+                <Button 
+                    Text="Zeiten Speichern" 
+                    Clicked="SaveTime_Clicked" 
+                    HorizontalOptions="Center"/>
+
+                <Label/>
+                <Label/>
+        
+                <!--In diesem Abschnitt kann man seine Überstunden manuell hinzfügen ober abziehen lassen -->
+        
+                <Label 
+                    Text="Überstunden abziehen oder hinzufügen: "
+                    HorizontalOptions="Center"/>
+                <FlexLayout>
+                    <Label 
+                        Text="Stunden hinzufügen: "
+                        VerticalTextAlignment="Center"/>
+            
+                    <Entry
+                        Keyboard="Numeric"
+                        x:Name="overHoursPTimePicker"/>
+
+                    <Label FlexLayout.Grow="1"/>
+
+                    <Label 
+                        Text="Stunden abziehen: "
+                        VerticalTextAlignment="Center"/>
+            
+                    <Entry
+                        Keyboard="Numeric"
+                        x:Name="overTimeMTimePicker"/>
+            
+                </FlexLayout>
+
+                <Button 
+                    Clicked="OverTimeChange_Clicked"
+                    Text="Überstunden ändern"
+                    HorizontalOptions="Center"
+                    IsEnabled="True"/>
+        
+
+            </StackLayout>
+    </ScrollView>
 </ContentPage>
