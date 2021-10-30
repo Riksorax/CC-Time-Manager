@@ -134,7 +134,7 @@ namespace CC_Time_Manager.Pages
             {
                 await App.DataDateTimeHours.SaveDateTimeAsync(dateTimeHour);
             }
-            if (!string.IsNullOrWhiteSpace(dateTimeHour.Hours_Today))
+            if (!string.IsNullOrWhiteSpace(hoursTotal_Label.Text))
             {
                 await App.DataDateTimeHours.SaveDateTimeAsync(dateTimeHour);
             }
@@ -146,7 +146,10 @@ namespace CC_Time_Manager.Pages
             {
                 await App.DataDateTimeHours.SaveDateTimeAsync(dateTimeHour);
             }
-            
+            else
+            {
+                await DisplayAlert("Achtung", "Es kommt eine Exeption","OK");
+            }
             await Shell.Current.GoToAsync("..");
         }
 

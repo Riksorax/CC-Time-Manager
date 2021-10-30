@@ -13,6 +13,8 @@ namespace CC_Time_Manager
     {
         static DateTimeRepository dataDateTimeHours;
 
+        
+
         public static DateTimeRepository DataDateTimeHours
         {
             get

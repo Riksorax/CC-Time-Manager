@@ -26,7 +26,7 @@ namespace CC_Time_Manager.Pages
 
             // Retrieve all the notes from the database, and set them as the
             // data source for the CollectionView.
-            collectionView.ItemsSource = await App.DataDateTimeHours.GetDateTimeHoursAsync();
+            dateTimeHoursList.ItemsSource = await App.DataDateTimeHours.GetDateTimeHoursAsync();
 
         }
         async void OnAddClicked(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace CC_Time_Manager.Pages
             await Shell.Current.GoToAsync(nameof(DateTimeCalculate));
         }
 
-        async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+       /* async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.CurrentSelection != null)
             {
@@ -43,7 +43,7 @@ namespace CC_Time_Manager.Pages
                 DateTimeHours dateTimeHours = (DateTimeHours)e.CurrentSelection.FirstOrDefault();
                 await Shell.Current.GoToAsync($"{nameof(DateTimeCalculate)}?{nameof(DateTimeCalculate.ItemId)}={dateTimeHours.ID.ToString()}");
             }
-        }
+        }*/
 
     }
 }

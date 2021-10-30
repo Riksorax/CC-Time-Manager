@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace CC_Time_Manager.Data
 {
-    
+
     public class DateTimeRepository
     {
         readonly SQLiteAsyncConnection dataDateTimeHours;
@@ -47,13 +47,53 @@ namespace CC_Time_Manager.Data
                 // Save a new note.
                 return dataDateTimeHours.InsertAsync(dateTimeHours);
             }
-        }
+            if (string.IsNullOrEmpty(dateTimeHours.Date))
+            {
+                // Update an existing note.
+                return dataDateTimeHours.UpdateAsync(dateTimeHours);
+            }
+            else
+            {
+                // Save a new note.
+                return dataDateTimeHours.InsertAsync(dateTimeHours);
+            }
+            if (string.IsNullOrEmpty(dateTimeHours.Hours_Today))
+            {
+                // Update an existing note.
+                return dataDateTimeHours.UpdateAsync(dateTimeHours);
+            }
+            else
+            {
+                // Save a new note.
+                return dataDateTimeHours.InsertAsync(dateTimeHours);
+            }
+            if (string.IsNullOrEmpty(dateTimeHours.OverTime_Today))
+            {
+                // Update an existing note.
+                return dataDateTimeHours.UpdateAsync(dateTimeHours);
+            }
+            else
+            {
+                // Save a new note.
+                return dataDateTimeHours.InsertAsync(dateTimeHours);
+            }
+            if (string.IsNullOrEmpty(dateTimeHours.OverTime_Total))
+            {
+                // Update an existing note.
+                return dataDateTimeHours.UpdateAsync(dateTimeHours);
+            }
+            else
+            {
+                // Save a new note.
+                return dataDateTimeHours.InsertAsync(dateTimeHours);
+            }
 
- /*       public Task<int> DeleteDateTimeHoursAsync(DateTimeHours dateTimeHours)
-        {
-            // Delete a note.
-            return dataDateTimeHours.DeleteAsync(dateTimeHours);
+            /*       public Task<int> DeleteDateTimeHoursAsync(DateTimeHours dateTimeHours)
+                   {
+                       // Delete a note.
+                       return dataDateTimeHours.DeleteAsync(dateTimeHours);
+                   }
+                */
         }
-     */   
     }
 }
