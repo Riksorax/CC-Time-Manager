@@ -18,6 +18,8 @@ namespace CC_Time_Manager.Pages
         public DateTimeChart()
         {
             InitializeComponent();
+
+            BindingContext = new DateTimeHours();
         }
 
         protected override async void OnAppearing()
@@ -27,14 +29,23 @@ namespace CC_Time_Manager.Pages
             // Retrieve all the notes from the database, and set them as the
             // data source for the CollectionView.
             dateTimeHoursList.ItemsSource = await App.DataDateTimeHours.GetDateTimeHoursAsync();
+            
 
         }
-        async void OnAddClicked(object sender, EventArgs e)
+        public async void LoadList_Clicked(object sender, EventArgs e)
         {
+            
             // Navigate to the NoteEntryPage.
-            await Shell.Current.GoToAsync(nameof(DateTimeCalculate));
-        }
+            
+            List<DateTimeHours> dateTimeHours = await App.DataDateTimeHours.GetDateTimeHoursAsync();
+            dateTimeHoursList.ItemsSource = dateTimeHours;
+            dateTimeHoursList.ItemsSource = dateTimeHours;
+            dateTimeHoursList.ItemsSource = dateTimeHours;
+            dateTimeHoursList.ItemsSource = dateTimeHours;
+            
 
+        }
+        
        /* async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.CurrentSelection != null)

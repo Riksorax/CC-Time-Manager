@@ -113,7 +113,7 @@
             Grid.Row="8"
             VerticalOptions="Center"
             HorizontalOptions="End" 
-            x:Name="DateToday_Label"
+            x:Name="dateToday_Label"
             HorizontalTextAlignment="Center"
             Text="{Binding Date, Source={x:Reference dateToday}, StringFormat='{0:dd.MM.yyyy}'}"/>
                     
@@ -170,8 +170,13 @@
             Text="Zeiten Speichern" 
             Clicked="SaveTime_Clicked" 
             HorizontalOptions="Center"/>
-           
-            <!--In diesem Abschnitt kann man seine Überstunden manuell hinzfügen ober abziehen lassen -->
+        <Label
+            Grid.Column="6"
+            Grid.Row="13"
+            x:Name="statusMessage"
+            />
+
+        <!--In diesem Abschnitt kann man seine Überstunden manuell hinzfügen ober abziehen lassen -->
 
         <Label 
             Grid.ColumnSpan="6"

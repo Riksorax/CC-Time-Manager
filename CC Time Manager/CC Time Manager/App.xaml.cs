@@ -6,29 +6,21 @@ using System.Text;
 using CC_Time_Manager.Data;
 using CC_Time_Manager.Pages;
 using System.IO;
+using Xamarin.Essentials;
 
 namespace CC_Time_Manager
 {
     public partial class App : Application
     {
-        static DateTimeRepository dataDateTimeHours;
+        string dbPath => FileAccessHelper.GetLocalFilePath("dateTime.db3");
+        public static DateTimeRepository DataDateTimeHours { get; private set; }
 
-        
-
-        public static DateTimeRepository DataDateTimeHours
-        {
-            get
-            {
-                if(dataDateTimeHours == null)
-                {
-                    dataDateTimeHours = new DateTimeRepository(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CC_Time_Manager.db3"));
-                }
-                return dataDateTimeHours;
-            }
-        }
         public App()
         {
             InitializeComponent();
+
+            DataDateTimeHours = new DateTimeRepository(dbPath);
+
             MainPage = new CC_Time_Manager.MainPage();
 
         }

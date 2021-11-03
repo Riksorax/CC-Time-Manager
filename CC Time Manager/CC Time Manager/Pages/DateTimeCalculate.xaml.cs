@@ -12,17 +12,10 @@ using Xamarin.Forms.Xaml;
 
 namespace CC_Time_Manager.Pages
 {
-    [QueryProperty(nameof(ItemId), nameof(ItemId))]
+    //[QueryProperty(nameof(ItemId), nameof(ItemId))]
     public partial class DateTimeCalculate : ContentPage
     {
-        public string ItemId
-        {
-            set
-            {
-                LoadDateTimeHours(value);
-            }
-        }
-
+       
         public DateTimeCalculate()
         {
             InitializeComponent();
@@ -111,46 +104,16 @@ namespace CC_Time_Manager.Pages
 
         }
 
-        async void LoadDateTimeHours(string itemId)
-        {
-            try
-            {
-                int id = Convert.ToInt32(itemId);
-                // Retrieve the note and set it as the BindingContext of the page.
-                DateTimeHours dateTimeHour = await App.DataDateTimeHours.GetDateTimeHoursAsync(id);
-                BindingContext = dateTimeHour;
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Failed to load note.");
-            }
-        }
+
 
         // Der Button soll die Zeiten und Daten abspeichern
-        async void SaveTime_Clicked(object sender, EventArgs e)
+        public async void SaveTime_Clicked(object sender, EventArgs e)
         {
-            var dateTimeHour = (DateTimeHours)BindingContext;
-            if (!string.IsNullOrWhiteSpace(dateTimeHour.Date))
-            {
-                await App.DataDateTimeHours.SaveDateTimeAsync(dateTimeHour);
-            }
-            if (!string.IsNullOrWhiteSpace(hoursTotal_Label.Text))
-            {
-                await App.DataDateTimeHours.SaveDateTimeAsync(dateTimeHour);
-            }
-            if (!string.IsNullOrWhiteSpace(dateTimeHour.OverTime_Today))
-            {
-                await App.DataDateTimeHours.SaveDateTimeAsync(dateTimeHour);
-            }
-            if (!string.IsNullOrWhiteSpace(dateTimeHour.OverTime_Total))
-            {
-                await App.DataDateTimeHours.SaveDateTimeAsync(dateTimeHour);
-            }
-            else
-            {
-                await DisplayAlert("Achtung", "Es kommt eine Exeption","OK");
-            }
-            await Shell.Current.GoToAsync("..");
+            await App.DataDateTimeHours.AddNewDateTimeHours(dateToday_Label.Text);
+            await App.DataDateTimeHours.AddNewDateTimeHours(hoursTotal_Label.Text);
+            await App.DataDateTimeHours.AddNewDateTimeHours(overTimeToday_Label.Text);
+            await App.DataDateTimeHours.AddNewDateTimeHours(overTimeTotal_Label.Text);
+
         }
 
  /*       async void OnDeleteButtonClicked(object sender,EventArgs e)
