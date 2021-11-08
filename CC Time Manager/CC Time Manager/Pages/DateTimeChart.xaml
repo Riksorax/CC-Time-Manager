@@ -1,64 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:model="clr-namespace:CC_Time_Manager.Models"
+             xmlns:cc_time_manager="clr-namespace:CC_Time_Manager" x:DataType="cc_time_manager:MainPage"
              x:Class="CC_Time_Manager.Pages.DateTimeChart"
              Title="Datum und allgemeine Zeiten in einer Tabelle">
+    <ContentPage.Content>
+        <StackLayout >
+            
+            <Frame BackgroundColor="AliceBlue" BorderColor="Blue" Padding="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2.5*" />
+                        <ColumnDefinition Width="2.5*" />
+                        <ColumnDefinition Width="2.5*" />
+                        <ColumnDefinition Width="2.5*" />
+                    </Grid.ColumnDefinitions>
 
-    <StackLayout >
 
 
-        <Frame BackgroundColor="AliceBlue" BorderColor="Blue" Padding="0">
-            <Grid>                
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2.5*" />
-                    <ColumnDefinition Width="2.5*" />
-                    <ColumnDefinition Width="2.5*" />
-                    <ColumnDefinition Width="2.5*" />
-                </Grid.ColumnDefinitions>
+                    <Button Text="Gibt alle Daten und Zeiten aus" Grid.ColumnSpan="5" Grid.Row="1" HorizontalOptions="Center" Clicked="LoadList_Clicked"/>
 
-                
+                    <Label TextColor="Black" Margin="10,0,10,0" Text="Datum" Grid.Column="0" VerticalOptions="Center"/>
+                    <Label TextColor="Black" Margin="10,0,10,0" Text="Heutige Std." Grid.Column="1" VerticalOptions="Center"/>
+                    <Label TextColor="Black" Margin="10,0,10,0" Text="Überstd. Heute" Grid.Column="2" VerticalOptions="Center"/>
+                    <Label TextColor="Black" Margin="10,0,10,0" Text="Überstd. Insgedamt" Grid.Column="3" VerticalOptions="Center"/>
 
-                <Button Text="Gibt alle Daten und Zeiten aus" Grid.ColumnSpan="5" Grid.Row="1" HorizontalOptions="Center" Clicked="LoadList_Clicked"/>
+                    <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                </Grid>
+            </Frame>
 
-                <Label TextColor="Black" Margin="10,0,10,0" Text="Datum" Grid.Column="0" VerticalOptions="Center"/>
-                <Label TextColor="Black" Margin="10,0,10,0" Text="Heutige Std." Grid.Column="1" VerticalOptions="Center"/>
-                <Label TextColor="Black" Margin="10,0,10,0" Text="Überstd. Heute" Grid.Column="2" VerticalOptions="Center"/>
-                <Label TextColor="Black" Margin="10,0,10,0" Text="Überstd. Insgedamt" Grid.Column="3" VerticalOptions="Center"/>
-                
-                <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-            </Grid>
-        </Frame>
 
-        <ListView ItemsSource="{Binding dateTimeHoursList}" x:Name="dateTimeHoursList" SeparatorVisibility="None" SelectionMode="None">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Frame Padding="0">
-                            <Grid Padding="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2.5*"/>
-                                    <ColumnDefinition Width="2.5*"/>
-                                    <ColumnDefinition Width="2.5*"/>
-                                    <ColumnDefinition Width="2.5*"/>
-                                </Grid.ColumnDefinitions>
+            <ListView
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                x:Name="dateTimeHoursList" 
+                SeparatorVisibility="None" 
+                SelectionMode="None">
+                <!--ItemsSource="{Binding dateTimeHoursList}" RefreshCommand="{Binding RefreshCommand}"
+                -->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="0">
+                                <Grid Padding="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2.5*"/>
+                                        <ColumnDefinition Width="2.5*"/>
+                                        <ColumnDefinition Width="2.5*"/>
+                                        <ColumnDefinition Width="2.5*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <Label TextColor="Black" Margin="10,0,10,0" Text="{Binding Date}" Grid.Column="0"/>
-                                <Label TextColor="Black" Margin="10,0,10,0" Text="{Binding Hours_Today}" Grid.Column="1"/>
-                                <Label TextColor="Black" Margin="10,0,10,0" Text="{Binding OverTime_Today}"  Grid.Column="2"/>
-                                <Label TextColor="Black" Margin="10,0,10,0" Text="{Binding OverTime_Total}"  Grid.Column="3"/>
+                                    <Label TextColor="Black" Margin="10,0,10,0" Text="{Binding Date}" Grid.Column="0"/>
+                                    <Label TextColor="Black" Margin="10,0,10,0" Text="{Binding Hours_Today}" Grid.Column="1"/>
+                                    <Label TextColor="Black" Margin="10,0,10,0" Text="{Binding OverTime_Today}"  Grid.Column="2"/>
+                                    <Label TextColor="Black" Margin="10,0,10,0" Text="{Binding OverTime_Total}"  Grid.Column="3"/>
 
-                                <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                            </Grid>
-                        </Frame>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+                                    <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="Gray" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

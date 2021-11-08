@@ -12,14 +12,14 @@ namespace CC_Time_Manager
 {
     public partial class App : Application
     {
-        string dbPath => FileAccessHelper.GetLocalFilePath("dateTime.db3");
+        string databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
         public static DateTimeRepository DataDateTimeHours { get; private set; }
 
         public App()
         {
             InitializeComponent();
 
-            DataDateTimeHours = new DateTimeRepository(dbPath);
+            DataDateTimeHours = new DateTimeRepository(databasePath);
 
             MainPage = new CC_Time_Manager.MainPage();
 

@@ -5,6 +5,8 @@ namespace CC_Time_Manager.Models
 
     public class DateTimeHours
     {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
         [PrimaryKey, Unique]
         public string Date { get; set; }
         [Unique]

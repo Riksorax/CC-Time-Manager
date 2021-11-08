@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CC_Time_Manager.Models;
 using CC_Time_Manager.Pages;
 using SQLite;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace CC_Time_Manager.Data
@@ -17,17 +18,13 @@ namespace CC_Time_Manager.Data
 
         public string StatusMessage { get; set; }
 
-        /*private DateTimeRepository(SQLiteAsyncConnection SQLiteAsyncConnection)
-        {
-            this.conn = SQLiteAsyncConnection;
-        }
-        */
+        
         public DateTimeRepository(string dbPath)
         {
             conn = new SQLiteAsyncConnection(dbPath);
             conn.CreateTableAsync<DateTimeHours>().Wait();
         }
-        
+
 
         public async Task AddNewDateTimeHours(string dateTimeHours) //, string hours_Today, string overTime_Today, string overTime_Total
         {
@@ -40,25 +37,20 @@ namespace CC_Time_Manager.Data
                 await conn.InsertAsync(new DateTimeHours { Date = dateTimeHours });
                 StatusMessage = string.Format("{0} record(s) added [Name: {1})", result, dateTimeHours);
 
-                /*
+                
                 if (string.IsNullOrEmpty(dateTimeHours))
                     throw new Exception("Valid Hours Today required");
-
                 await conn.InsertAsync(new DateTimeHours { Hours_Today = dateTimeHours });
                 StatusMessage = string.Format("{0} record(s) added [Name: {1})", result, dateTimeHours);
-
                 if (string.IsNullOrEmpty(dateTimeHours))
                     throw new Exception("Valid OverTime Today required");
-
                 await conn.InsertAsync(new DateTimeHours { OverTime_Today = dateTimeHours });
                 StatusMessage = string.Format("{0} record(s) added [Name: {1})", result, dateTimeHours);
-
                 if (string.IsNullOrEmpty(dateTimeHours))
                     throw new Exception("Valid OverTime Total required");
-
                 await conn.InsertAsync(new DateTimeHours { OverTime_Total = dateTimeHours });
                 StatusMessage = string.Format("{0} record(s) added [Name: {1})", result, dateTimeHours);
-                */
+                
             }
             catch (Exception ex)
             {
@@ -80,15 +72,14 @@ namespace CC_Time_Manager.Data
             return new List<DateTimeHours>();
         }
 
-        
-        
 
-            /*       public Task<int> DeleteDateTimeHoursAsync(DateTimeHours dateTimeHours)
-                   {
-                       // Delete a note.
-                       return dataDateTimeHours.DeleteAsync(dateTimeHours);
-                   }
-                */
-        
+
+
+        /*public Task<int> DeleteDateTimeHoursAsync(DateTimeHours dateTimeHours)
+            {
+                // Delete a note.
+                //return dataDateTimeHours.DeleteAsync(dateTimeHours);
+            }*/
+            
     }
 }

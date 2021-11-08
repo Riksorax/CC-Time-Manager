@@ -1,6 +1,6 @@
 ﻿using Xamarin.Essentials;
 
-namespace CC_Time_Manager
+namespace People
 {
     public class FileAccessHelper
     {

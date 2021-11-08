@@ -168,8 +168,9 @@
             Grid.ColumnSpan="6"
             Grid.Row="13"                
             Text="Zeiten Speichern" 
-            Clicked="SaveTime_Clicked" 
+            Clicked="SaveTime_Clicked"
             HorizontalOptions="Center"/>
+        <!---->
         <Label
             Grid.Column="6"
             Grid.Row="13"
